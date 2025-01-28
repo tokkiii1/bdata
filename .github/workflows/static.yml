@@ -1,43 +1,74 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot de Historias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .story {
+            margin: 20px 0;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bot de Historias</h1>
+        <p class="story">¡Haz clic en el botón para comenzar tu historia!</p>
+        <button onclick="generateStory()">Generar Historia</button>
+    </div>
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+    <script>
+        const stories = [
+            "Había una vez, en un pequeño pueblo cerca del río, un gato llamado Bigotes que soñaba con explorar el mundo más allá de las montañas.",
+            "En un bosque encantado, una ardilla llamada Sofía encontró una llave mágica que abría la puerta a un reino de sueños.",
+            "En lo alto de una colina, un perro llamado Max ayudó a un grupo de animales perdidos a encontrar el camino de regreso a casa.",
+            "En una ciudad llena de luces, un robot llamado Lolo descubrió la alegría de la música al escuchar una banda callejera tocar.",
+            "En una isla lejana, una tortuga llamada Lola unió a todas las criaturas marinas para proteger su hogar de una gran tormenta." 
+        ];
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+        function generateStory() {
+            const randomIndex = Math.floor(Math.random() * stories.length);
+            const storyElement = document.querySelector('.story');
+            const storyText = stories[randomIndex];
+            storyElement.textContent = storyText;
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+            const utterance = new SpeechSynthesisUtterance(storyText);
+            utterance.lang = "es-ES";
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
