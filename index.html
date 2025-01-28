@@ -62,7 +62,12 @@
         function generateStory() {
             const randomIndex = Math.floor(Math.random() * stories.length);
             const storyElement = document.querySelector('.story');
-            storyElement.textContent = stories[randomIndex];
+            const storyText = stories[randomIndex];
+            storyElement.textContent = storyText;
+
+            const utterance = new SpeechSynthesisUtterance(storyText);
+            utterance.lang = "es-ES";
+            speechSynthesis.speak(utterance);
         }
     </script>
 </body>
