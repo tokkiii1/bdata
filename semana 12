@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot de Historias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .story {
+            margin: 20px 0;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bot de Historias</h1>
+        <p class="story">¡Haz clic en el botón para comenzar tu historia!</p>
+        <button onclick="generateStory()">Generar Historia</button>
+    </div>
+
+    <script>
+        const stories = [
+            "Había una vez, en un pequeño pueblo cerca del río, un gato llamado Bigotes que soñaba con explorar el mundo más allá de las montañas.",
+            "En un bosque encantado, una ardilla llamada Sofía encontró una llave mágica que abría la puerta a un reino de sueños.",
+            "En lo alto de una colina, un perro llamado Max ayudó a un grupo de animales perdidos a encontrar el camino de regreso a casa.",
+            "En una ciudad llena de luces, un robot llamado Lolo descubrió la alegría de la música al escuchar una banda callejera tocar.",
+            "En una isla lejana, una tortuga llamada Lola unió a todas las criaturas marinas para proteger su hogar de una gran tormenta." 
+        ];
+
+        function generateStory() {
+            const randomIndex = Math.floor(Math.random() * stories.length);
+            const storyElement = document.querySelector('.story');
+            storyElement.textContent = stories[randomIndex];
+        }
+    </script>
+</body>
+</html>
